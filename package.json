@@ -22,4 +22,5 @@
     "heroku",
     "express"
   ],
+  "license": "MIT"
 }
