@@ -1,5 +1,5 @@
 {
-  "name": "Waiter Queue",
+  "name": "FlicApp",
   "version": "0.1",
   "description": "A service queue for customers at sit-down businesses",
   "main": "index.js",

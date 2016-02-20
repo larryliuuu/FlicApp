@@ -1,5 +1,5 @@
 {
-  "name": "Waiter Queue",
+  "name": "FlicApp",
   "description": "A service queue for customers at sit-down businesses",
   "repository": "https://github.com/ssinha10/FlicApp",
   "keywords": ["node", "express", "static"],
