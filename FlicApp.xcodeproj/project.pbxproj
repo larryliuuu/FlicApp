@@ -12,7 +12,23 @@
 		0DEF25ED1C78D58000268041 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DEF25EB1C78D58000268041 /* Main.storyboard */; };
 		0DEF25EF1C78D58000268041 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DEF25EE1C78D58000268041 /* Assets.xcassets */; };
 		0DEF25F21C78D58000268041 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DEF25F01C78D58000268041 /* LaunchScreen.storyboard */; };
+		0DEF25FB1C78D82500268041 /* fliclib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEF25F91C78D7C100268041 /* fliclib.framework */; };
+		0DEF25FC1C78D82500268041 /* fliclib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEF25F91C78D7C100268041 /* fliclib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0DEF25FD1C78D82500268041 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0DEF25FC1C78D82500268041 /* fliclib.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0DEF25E41C78D58000268041 /* FlicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +38,7 @@
 		0DEF25EE1C78D58000268041 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0DEF25F11C78D58000268041 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0DEF25F31C78D58000268041 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0DEF25F91C78D7C100268041 /* fliclib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = fliclib.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DEF25FB1C78D82500268041 /* fliclib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +56,7 @@
 		0DEF25DB1C78D57F00268041 = {
 			isa = PBXGroup;
 			children = (
+				0DEF25F91C78D7C100268041 /* fliclib.framework */,
 				0DEF25E61C78D58000268041 /* FlicApp */,
 				0DEF25E51C78D58000268041 /* Products */,
 			);
@@ -74,6 +93,7 @@
 				0DEF25E01C78D58000268041 /* Sources */,
 				0DEF25E11C78D58000268041 /* Frameworks */,
 				0DEF25E21C78D58000268041 /* Resources */,
+				0DEF25FD1C78D82500268041 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -247,6 +267,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = FlicApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kingsoy.FlicApp;
@@ -258,6 +283,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = FlicApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kingsoy.FlicApp;
