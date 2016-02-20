@@ -1,6 +1,6 @@
 {
   "name": "FlicApp",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "A service queue for customers at sit-down businesses",
   "main": "index.js",
   "scripts": {
