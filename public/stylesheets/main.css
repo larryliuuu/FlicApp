@@ -3,15 +3,29 @@
   padding-top: 7px;
 }
 .queue-container {
+  padding-top: 7px;
   height: 600px;
-  width: 400px;
-  background-color: black;
+  width: 900px;
+  background-color: white;
+  border: 4px  #0197D6 solid;
   margin: 0 auto;
+  color: black;
 }
 
 .queue-item  {
   width: 100%;
+  padding: 10px 0px;
+  background-color: white;
 }
 
-    
-
+button {
+  color: black;
+  margin-bottom: 10px;
+}
+.queue-header{
+	padding-bottom:7px;
+}
+.queue-title{
+	font-size: 36px;
+	color: black;
+}
