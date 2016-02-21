@@ -4,7 +4,17 @@ app.controller('testController', ['$scope', function($scope){
 
   $scope.queueData = [];
   var socket = io();
-  
+
+  $scope.hasChanged = false;
+
+  $scope.refresh = function(){
+    $('.queue-container span').each(function(){
+      var $this = $(this);
+      var time = $this.attr('time');
+      $this.livestamp(time);
+    })
+  };
+
 
   // $('form').submit(function(){
   //  socket.emit('chat message', $('#m').val());
@@ -15,9 +25,25 @@ app.controller('testController', ['$scope', function($scope){
   // Add a Item to the list
  $scope.addItem = function (item) {
      $scope.queueData.push(item);
-     console.log($scope.queueData);
+      setTimeout($scope.$apply(),10
+    );
       $scope.$apply();
+      $scope.hasChanged = true;
  };
+
+ setInterval(function(){
+   if($scope.hasChanged){
+     $('.queue-container span').each(function(){
+       var $this = $(this);
+       var time = $this.attr('time');
+       if(time.charAt(0) == '"'){
+         time = time.slice(1, -1);
+       }
+       $this.livestamp(time);
+     })
+     $scope.hasChanged = false;
+   }
+ }, 1000);
 
 $scope.hasItem = function (tableID) {
   var has = false;
@@ -46,7 +72,7 @@ $scope.removeItem = function (tableID) {
     for(var i = 0; i <= len; i++){
       if(i == $scope.queueData.length){
         if(!has){
-          $scope.addItem({id: tableID, readableTime: jQuery.timeago(new Date()), status: 'service'});
+          $scope.addItem({id: tableID, time: new Date(), status: 'service'});
         }
       }
       else{
@@ -64,7 +90,7 @@ $scope.removeItem = function (tableID) {
       for(var i = 0; i <= len; i++){
         if(i == $scope.queueData.length){
           if(!has){
-            $scope.addItem({id: tableID, readableTime: jQuery.timeago(new Date()), status: 'check'});
+            $scope.addItem({id: tableID, time: new Date(), status: 'check'});
           }
         }
         else{
@@ -83,9 +109,6 @@ $scope.removeItem = function (tableID) {
   $(".dropdown-button").dropdown();
   $.get('/queue', function(data){
       var queue = data.queue
-      queue.forEach(function(element, index, array){
-        element['readableTime'] = jQuery.timeago(element.time);
-      });
       queue.forEach(function(element, index, array){
         $scope.addItem(element);
       })
