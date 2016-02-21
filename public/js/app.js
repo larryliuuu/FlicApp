@@ -4,6 +4,7 @@ app.controller('testController', ['$scope', function($scope){
 
   $scope.queueData = [];
   var socket = io();
+  
 
   // $('form').submit(function(){
   //  socket.emit('chat message', $('#m').val());
@@ -79,6 +80,7 @@ $scope.removeItem = function (tableID) {
     $scope.removeItem(tableID);
   });
 
+  $(".dropdown-button").dropdown();
   $.get('/queue', function(data){
       var queue = data.queue
       queue.forEach(function(element, index, array){

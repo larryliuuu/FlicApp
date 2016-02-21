@@ -2,36 +2,23 @@
   float: left;
   padding-top: 7px;
 }
-.queue-container {
-  height: 600px;
-  width: 1000px;
-  background-color: white;
-  border: 4px  #0197D6 solid;
-  margin: 0 auto;
-  color: black;
+
+.queue-item {
+  font-size: 20px;
+}
+.queue-item .material-icons {
+  font-size: 50px;
 }
 
-.queue-item  {
-  height: 60px;
+.queue-item .row {
   width: 100%;
-  padding-top: 18px;
-  background-color: white;
-  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0.2s;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.26);
+  margin: 0;
 }
-button {
-  color: black;
-  margin-bottom: 10px;
+
+.brand-logo .logo {
+  margin-top: 7px;
 }
-.queue-header{
-	height: 50px;
-	padding-top: 10px;
-	padding-bottom: 0;
-	font-size: 20px;
-	background-color: #FFCCBC;
-}
-.queue-title{
-	font-size: 36px;
-	color: black;
+
+.heart-icon {
+  padding-top: 3px;
 }

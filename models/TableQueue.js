@@ -22,6 +22,7 @@ TableQueueSchema.methods.addTable = function(tableID, status) {
       console.log(err);
       return;
     }
+    console.log(result);
     if(!result){
       var table = new Table({id:tableID, index: queue.length, status: status})
       table.save(handleError);
