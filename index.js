@@ -13,17 +13,17 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 app.get('/one-click', function (req, res) {
-  io.emit('one-click', tableID);
+  io.emit('one-click', 'hi');
 });
 
 
 app.get('/double-click', function (req, res) {
-  io.emit('double-click', tableID);
+  io.emit('double-click', 'hi');
 });
 
 
 app.get('/hold', function (req, res) {
-  io.emit('hold', tableID);
+  io.emit('hold', 'hi');
 });
 
 
