@@ -24,7 +24,7 @@ TableQueue.find({}, function(err, queues){
   }
   queues.forEach(function(element, index, array){
     element.queue.forEach(function(element, index, array){
-      Table.remove({"id": element.id}, handleError);
+      Table.remove({_id: element._id}, handleError);
     });
     element.remove();
   });
