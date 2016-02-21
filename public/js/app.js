@@ -1,44 +1,68 @@
 var app = angular.module('app', []);
 
-app.controller('testController', ['$scope', 'dataFactory', function($scope, dataFactory){
+app.controller('testController', ['$scope', function($scope){
 
-  $scope.queueData = {};
+  $scope.queueData = [];
+  var socket = io();
 
+  // $('form').submit(function(){
+  //  socket.emit('chat message', $('#m').val());
+  //  $('#m').val('');
+  //  return false;
+  // });
 
-  $scope.requestQueue = function() {
-    dataFactory.getQueue().then(function(res){
-      //console.log(res.queue);
-      $scope.queueData = res.queue;
+  // Add a Item to the list
+ $scope.addItem = function (item) {
+     $scope.queueData.push(item);
+     console.log($scope.queueData);
+      $scope.$apply();
+ };
 
-    });
-  };
+$scope.hasItem = function (tableID) {
+  var has = false;
+  $.each($scope.queueData, function( index, value){
+    if(value.id == tableID){
+      has = true;
+    }
+    if(index == $scope.queueData.length-1){
+      return has;
+    }
+  });
+};
 
+$scope.removeItem = function (tableID) {
+  $scope.queueData.forEach(function(element, index, array){
+    if(element.id == tableID){
+      $scope.queueData.splice(element.index,1)
+      $scope.$apply();
+    }
+  });
+};
 
-}]);
+  socket.on('one-click', function(tableID){
+    console.log($scope.hasItem(tableID));
+    if(!$scope.hasItem(tableID)){
+      $scope.addItem({id: tableID, readableTime: jQuery.timeago(new Date()), status: 'service'});
+    }
+  });
+  socket.on('double-click', function(tableID){
+    if(!$scope.hasItem(tableID)){
+      $scope.addItem({id: tableID, readableTime: jQuery.timeago(new Date()), status: 'check'});
+    }
+  });
+  socket.on('hold', function(tableID){
+    $scope.removeItem(tableID);
+  });
 
-app.factory('dataFactory', function($http, $q){
-  //setting up basic factory variables
-  var queryUrl = '/queue';
-  var service = {};
-
-  service.getQueue = function() {
-    var deferred = $q.defer();
-    $http.get(queryUrl)
-    .success(function(res){
-      var queue = res.queue
+  $.get('/queue', function(data){
+      var queue = data.queue
       queue.forEach(function(element, index, array){
         element['readableTime'] = jQuery.timeago(element.time);
       });
-      service.data = res.data;
-      deferred.resolve(res);
-    })
-    .error(function(err, status){
-      deferred.reject(err);
+      queue.forEach(function(element, index, array){
+        $scope.addItem(element);
+      })
+  });
 
-    })
-    return deferred.promise;
-  };
 
-  return service;
-
-});
+}]);
