@@ -56,8 +56,8 @@ app.get('/queue', function(req, res){
 
 app.get('/one-click/:tableID', function (req, res) {
   io.emit('one-click', req.params.tableID);
-  setTimeout(function(tableID){
-    queue.addTable(tableID, "service");
+  setTimeout(function(){
+    queue.addTable(req.params.tableID, "service");
     queue.save(handleError);
   }, 300);
   res.send('success');
