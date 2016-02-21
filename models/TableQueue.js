@@ -40,7 +40,7 @@ TableQueueSchema.methods.removeTable = function(tableID) {
     index = table.index;
     table.remove();
   });
-  this.queue.splice(index);
+  this.queue.splice(index, 1);
 }
 
 module.exports = mongoose.model('TableQueue', TableQueueSchema);

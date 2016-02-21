@@ -33,16 +33,19 @@ $scope.hasItem = function (tableID) {
 $scope.removeItem = function (tableID) {
   $scope.queueData.forEach(function(element, index, array){
     if(element.id == tableID){
-      $scope.queueData.splice(element.index,1)
+      $scope.queueData.splice(index, 1)
       $scope.$apply();
     }
   });
 };
 
   socket.on('one-click', function(tableID){
-    console.log($scope.hasItem(tableID));
-    if(!$scope.hasItem(tableID)){
-      $scope.addItem({id: tableID, readableTime: jQuery.timeago(new Date()), status: 'service'});
+    has = false
+    for(var i = 0; i< $scope.queueData.length; i++){
+      var element = $scope.queueData[i];
+      if(element.id == tableID){
+          has = true;
+      }
     }
   });
   socket.on('double-click', function(tableID){
