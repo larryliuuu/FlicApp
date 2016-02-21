@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 
 <head>
 
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Serivce Queue</title>
+    <title>Service Queue</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -19,15 +19,14 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="./public/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="js/client.js"></script>
 
-    <!-- Cool CSS animated background
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="css/component.css" />
-    -->
+     <!-- Angular --> 
+    <script src="js/angular.js"></script>
+    <script src="js/app.js"></script>
+
 
     <!-- Favicon -->
     <link rel="icon"
@@ -37,7 +36,7 @@
 
 </head>
 
-<body>
+<body ng-controller="testController">
 
 
     <!-- Navigation -->
@@ -83,9 +82,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1>Service Queue</h1>
-                        <h3>Developed at HackIllinois 2016</h3>
-                        <hr class="intro-divider">
+                        <!-- Refresh Queue Button -->
+                        <button ng-click="requestQueue()"> Get Queue</button>
+                        <!-- Display Queue --> 
+                        <div class="queue-container">
+
+                            <div ng-repeat="ticket in queueData"> 
+                                <div> Table #: {{ticket.id}} </div>
+                                <div> Time: {{ticket.time}} </div>
+                            </div>
+                            
+                        </div>
+
 
                     </div>
                 </div>

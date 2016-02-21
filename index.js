@@ -49,7 +49,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/queue', function(req, res){
-  res.json({'queue': queue});
+  res.json({'queue': queue.queue});
 });
 
 app.get('/one-click/:tableID', function (req, res) {
