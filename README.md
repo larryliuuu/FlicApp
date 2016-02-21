@@ -15,6 +15,5 @@ to manage Flic interactions.
 * https://github.com/ssinha10
 * https://github.com/vishrutdixit
 
-
 ## Copyright and License
-Copyright 2016. Code released under the [Apache 2.0](https://github.com/ssinha10/FlicApp/LICENSE) license.
+Copyright 2016. Code released under the [Apache 2.0](https://github.com/ssinha10/FlicApp/blob/master/LICENSE) license.
