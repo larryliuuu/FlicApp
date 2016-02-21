@@ -3,6 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 mongoose.connect('mongodb://waiterqueue:waiterqueue@ds013738.mongolab.com:13738/heroku_txdrn6vx');
 
@@ -40,14 +41,26 @@ TableQueue.find({}, function(err, queues){
 
 app.set('port', (process.env.PORT || 5000));
 
+app.use(bodyParser.json()); // for parsing application/json
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
+
+app.get('/queue', function(req, res){
+  res.json({'queue': queue});
+});
+
 app.get('/one-click/:tableID', function (req, res) {
   io.emit('one-click', req.params.tableID);
   queue.addTable(req.params.tableID, "service");
+  queue.save(function(err){
+    if (err){
+      console.log(err);
+      return;
+    }
+  });
   console.log(queue);
   res.send('success');
 });
@@ -56,6 +69,12 @@ app.get('/one-click/:tableID', function (req, res) {
 app.get('/double-click/:tableID', function (req, res) {
   io.emit('double-click', req.params.tableID);
   queue.addTable(req.params.tableID, "check");
+  queue.save(function(err){
+    if (err){
+      console.log(err);
+      return;
+    }
+  });
   console.log(queue);
   res.send('success');
 });
@@ -63,6 +82,14 @@ app.get('/double-click/:tableID', function (req, res) {
 
 app.get('/hold/:tableID', function (req, res) {
   io.emit('hold', req.params.tableID);
+  queue.removeTable(req.params.tableID);
+  queue.save(function(err){
+    if (err){
+      console.log(err);
+      return;
+    }
+  });
+  console.log(queue);
   res.send('success');
 });
 
