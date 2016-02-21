@@ -54,20 +54,38 @@ app.get('/queue', function(req, res){
   res.json({'queue': queue.queue});
 });
 
+var oneClickWaiting = false;
 app.get('/one-click/:tableID', function (req, res) {
   io.emit('one-click', req.params.tableID);
-  setTimeout(function(){
-    queue.addTable(req.params.tableID, "service");
-    queue.save(handleError);
-  }, 300);
+  var interval = setInterval(function(){
+    if(!oneClickWaiting){
+      clearInterval(interval);
+      oneClickWaiting = true;
+      queue.addTable(req.params.tableID, "service");
+      queue.save(function(err){
+        oneClickWaiting = false;
+        handleError(err);
+      });
+    }
+  }, 10);
   res.send('success');
 });
 
 
+var doubleClickWaiting = false;
 app.get('/double-click/:tableID', function (req, res) {
   io.emit('double-click', req.params.tableID);
-  queue.addTable(req.params.tableID, "check");
-  queue.save(handleError);
+  var interval = setInterval(function(){
+    if(!oneClickWaiting){
+      clearInterval(interval);
+      doubleClickWaiting = true;
+      queue.addTable(req.params.tableID, "check");
+      queue.save(function(err){
+        doubleClickWaiting = false;
+        handleError(err);
+      });
+    }
+  }, 10);
   res.send('success');
 });
 
