@@ -40,19 +40,41 @@ $scope.removeItem = function (tableID) {
 };
 
   socket.on('one-click', function(tableID){
-    has = false
-    for(var i = 0; i< $scope.queueData.length; i++){
-      var element = $scope.queueData[i];
-      if(element.id == tableID){
-          has = true;
+    var has = false
+    var len = $scope.queueData.length;
+    for(var i = 0; i <= len; i++){
+      if(i == $scope.queueData.length){
+        if(!has){
+          $scope.addItem({id: tableID, readableTime: jQuery.timeago(new Date()), status: 'service'});
+        }
+      }
+      else{
+        var element = $scope.queueData[i];
+        if(element.id == tableID){
+            has = true;
+        }
       }
     }
   });
+
   socket.on('double-click', function(tableID){
-    if(!$scope.hasItem(tableID)){
-      $scope.addItem({id: tableID, readableTime: jQuery.timeago(new Date()), status: 'check'});
-    }
+      var has = false
+      var len = $scope.queueData.length;
+      for(var i = 0; i <= len; i++){
+        if(i == $scope.queueData.length){
+          if(!has){
+            $scope.addItem({id: tableID, readableTime: jQuery.timeago(new Date()), status: 'check'});
+          }
+        }
+        else{
+          var element = $scope.queueData[i];
+          if(element.id == tableID){
+              has = true;
+          }
+        }
+      }
   });
+
   socket.on('hold', function(tableID){
     $scope.removeItem(tableID);
   });
