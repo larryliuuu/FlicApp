@@ -58,6 +58,7 @@ $scope.hasItem = function (tableID) {
 };
 
 $scope.removeItem = function (tableID) {
+  console.log("fire!");
   $scope.queueData.forEach(function(element, index, array){
     if(element.id == tableID){
       $scope.queueData.splice(index, 1)
@@ -65,6 +66,12 @@ $scope.removeItem = function (tableID) {
     }
   });
 };
+
+$scope.clickToRemove = function (tableID) {
+  $.get('/hold/'+tableID, function(data){
+    console.log('successful');
+  });
+}
 
   socket.on('one-click', function(tableID){
     var has = false
