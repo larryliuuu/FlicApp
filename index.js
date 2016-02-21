@@ -22,12 +22,9 @@ TableQueue.find({}, function(err, queues){
     console.log(err);
     return;
   }
-  queues.forEach(function(element, index, array){
-    element.queue.forEach(function(element, index, array){
-      Table.remove({_id: element._id}, handleError);
-    });
-    element.remove();
-  });
+
+  Table.remove({}, handleError)
+  TableQueue.remove({}, handleError)
   queue = new TableQueue();
   queue.save(handleError);
   // if(queues.length >=1){
