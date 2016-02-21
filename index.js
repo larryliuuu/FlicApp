@@ -13,7 +13,7 @@ TableQueue.find({}, function(err, queues){
     console.log(err);
     return;
   }
-  
+
   queues.forEach(function(element, index, array){
     element.remove();
   });
@@ -46,23 +46,23 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 app.get('/one-click/:tableID', function (req, res) {
-  io.emit('one-click', req.tableID);
-  queue.addTable(req.tableID, "service");
+  io.emit('one-click', req.params.tableID);
+  queue.addTable(req.params.tableID, "service");
   console.log(queue);
   res.send('success');
 });
 
 
 app.get('/double-click/:tableID', function (req, res) {
-  io.emit('double-click', req.tableID);
-  queue.addTable(req.tableID, "check");
+  io.emit('double-click', req.params.tableID);
+  queue.addTable(req.params.tableID, "check");
   console.log(queue);
   res.send('success');
 });
 
 
 app.get('/hold/:tableID', function (req, res) {
-  io.emit('hold', req.tableID);
+  io.emit('hold', req.params.tableID);
   res.send('success');
 });
 
