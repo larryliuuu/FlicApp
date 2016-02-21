@@ -92,16 +92,23 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="intro-message">
+                    <div class="intro-message"> 
+                        <div class="queue-title"> QUEUE </div>
+                        <br>
                         <!-- Refresh Queue Button -->
-                        <button ng-click="requestQueue()"> Get Queue</button>
+                        <!-- <button ng-click="requestQueue()"> Get Queue</button> -->
                         <!-- Display Queue -->
                         <div class="queue-container">
+                            <div class= "queue-header">
+                                <div class="col-md-4"> Table Number </div>
+                                <div class="col-md-4"> Time </div>
+                                <div class="col-md-4"> Request Type </div>
+                            </div>
 
                             <div class="queue-item col-md-6" ng-repeat="ticket in queueData track by $index">
-                                <div class="col-md-4"> Table #: {{ticket.id}} </div>
-                                <div class="col-md-4"> Time: {{ticket.readableTime}} </div>
-                                <div class="col-md-4"> Status: {{ticket.status}} </div>
+                                <div class="col-md-4"> {{ticket.id}} </div>
+                                <div class="col-md-4"> {{ticket.readableTime}} </div>
+                                <div class="col-md-4"> {{ticket.status}} </div>
                             </div>
 
                         </div>
@@ -137,7 +144,7 @@
                             <a href="#contact">Contact</a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
+                    <p class="copyright text-muted small">Copyright &copy; HackIllinois 2016. All Rights Reserved</p>
                 </div>
             </div>
         </div>
