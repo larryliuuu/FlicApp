@@ -15,6 +15,7 @@ var handleError = function(err){
 }
 
 var TableQueue = require('./models/TableQueue');
+var Table = require('./models/Table');
 var queue;
 TableQueue.find({}, function(err, queues){
   if (err){
@@ -22,6 +23,9 @@ TableQueue.find({}, function(err, queues){
     return;
   }
   queues.forEach(function(element, index, array){
+    element.queue.forEach(function(element, index, array){
+      Table.remove({"id": element.id}, handleError);
+    });
     element.remove();
   });
   queue = new TableQueue();
