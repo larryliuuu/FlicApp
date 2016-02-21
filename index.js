@@ -7,6 +7,13 @@ var bodyParser = require('body-parser');
 
 mongoose.connect('mongodb://waiterqueue:waiterqueue@ds013738.mongolab.com:13738/heroku_txdrn6vx');
 
+var handleError = function(err){
+    if (err){
+      console.log(err);
+      return;
+    }
+}
+
 var TableQueue = require('./models/TableQueue');
 var queue;
 TableQueue.find({}, function(err, queues){
@@ -14,17 +21,11 @@ TableQueue.find({}, function(err, queues){
     console.log(err);
     return;
   }
-
   queues.forEach(function(element, index, array){
     element.remove();
   });
   queue = new TableQueue();
-  queue.save(function(err){
-    if (err){
-      console.log(err);
-      return;
-    }
-  });
+  queue.save(handleError);
   // if(queues.length >=1){
   //   queue = queues[0];
   // } else {
@@ -49,19 +50,13 @@ app.get('/', function(req, res){
 });
 
 app.get('/queue', function(req, res){
-  res.json({'queue': queue});
+  res.json({'queue': queue.queue});
 });
 
 app.get('/one-click/:tableID', function (req, res) {
   io.emit('one-click', req.params.tableID);
   queue.addTable(req.params.tableID, "service");
-  queue.save(function(err){
-    if (err){
-      console.log(err);
-      return;
-    }
-  });
-  console.log(queue);
+  queue.save(handleError);
   res.send('success');
 });
 
@@ -69,13 +64,7 @@ app.get('/one-click/:tableID', function (req, res) {
 app.get('/double-click/:tableID', function (req, res) {
   io.emit('double-click', req.params.tableID);
   queue.addTable(req.params.tableID, "check");
-  queue.save(function(err){
-    if (err){
-      console.log(err);
-      return;
-    }
-  });
-  console.log(queue);
+  queue.save(handleError);
   res.send('success');
 });
 
@@ -83,13 +72,7 @@ app.get('/double-click/:tableID', function (req, res) {
 app.get('/hold/:tableID', function (req, res) {
   io.emit('hold', req.params.tableID);
   queue.removeTable(req.params.tableID);
-  queue.save(function(err){
-    if (err){
-      console.log(err);
-      return;
-    }
-  });
-  console.log(queue);
+  queue.save(handleError);
   res.send('success');
 });
 

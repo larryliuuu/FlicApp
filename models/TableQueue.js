@@ -3,20 +3,31 @@ var Table        = require('./Table');
 var TableSchema  = Table.schema;
 var Schema       = mongoose.Schema;
 
+
+var handleError = function(err){
+    if (err){
+      console.log(err);
+      return;
+    }
+}
+
 var TableQueueSchema   = new Schema({
     queue : {type: [TableSchema], default: []}
 });
 
 TableQueueSchema.methods.addTable = function(tableID, status) {
-  console.log(tableID);
-  var table = new Table({id:tableID, index: this.queue.length, status: status})
-  table.save(function(err){
+  var queue = this.queue;
+  var query = Table.findOne({'id': tableID, 'status':status}, 'index', function(err, result){
     if (err){
       console.log(err);
       return;
     }
+    if(!result){
+      var table = new Table({id:tableID, index: queue.length, status: status})
+      table.save(handleError);
+      queue.push(table);
+    }
   });
-  this.queue.push(table);
 }
 
 TableQueueSchema.methods.removeTable = function(tableID) {
@@ -27,6 +38,7 @@ TableQueueSchema.methods.removeTable = function(tableID) {
       return;
     }
     index = table.index;
+    table.remove();
   });
   this.queue.splice(index);
 }
