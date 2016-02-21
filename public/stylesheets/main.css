@@ -2,6 +2,11 @@
   float: left;
   padding-top: 7px;
 }
+.queue-container {
+  height: 400px;
+  width: 200px;
+  background-color: black;
+}
 
     
 
