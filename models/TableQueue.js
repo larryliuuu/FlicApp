@@ -37,8 +37,10 @@ TableQueueSchema.methods.removeTable = function(tableID) {
       console.log(err);
       return;
     }
-    index = table.index;
-    table.remove();
+    if(table){
+      index = table.index;
+      table.remove();
+    }
   });
   this.queue.splice(index, 1);
 }
