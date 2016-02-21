@@ -13,17 +13,28 @@ TableQueue.find({}, function(err, queues){
     console.log(err);
     return;
   }
-  if(queues.length >=1){
-    queue = queues[0];
-  } else {
-    queue = new TableQueue();
-    queue.save(function(err){
-      if (err){
-        console.log(err);
-        return;
-      }
-    });
-  }
+  
+  queues.forEach(function(element, index, array){
+    element.remove();
+  });
+  queue = new TableQueue();
+  queue.save(function(err){
+    if (err){
+      console.log(err);
+      return;
+    }
+  });
+  // if(queues.length >=1){
+  //   queue = queues[0];
+  // } else {
+  //   queue = new TableQueue();
+  //   queue.save(function(err){
+  //     if (err){
+  //       console.log(err);
+  //       return;
+  //     }
+  //   });
+  // }
 });
 
 

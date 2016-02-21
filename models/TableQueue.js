@@ -8,6 +8,7 @@ var TableQueueSchema   = new Schema({
 });
 
 TableQueueSchema.methods.addTable = function(tableID, status) {
+  console.log(tableID);
   var table = new Table({id:tableID, index: this.queue.length, status: status})
   table.save(function(err){
     if (err){
