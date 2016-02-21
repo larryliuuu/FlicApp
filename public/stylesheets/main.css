@@ -3,9 +3,14 @@
   padding-top: 7px;
 }
 .queue-container {
-  height: 400px;
-  width: 200px;
+  height: 600px;
+  width: 400px;
   background-color: black;
+  margin: 0 auto;
+}
+
+.queue-item  {
+  width: 100%;
 }
 
     

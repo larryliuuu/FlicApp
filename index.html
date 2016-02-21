@@ -87,9 +87,10 @@
                         <!-- Display Queue --> 
                         <div class="queue-container">
 
-                            <div ng-repeat="ticket in queueData"> 
-                                <div> Table #: {{ticket.id}} </div>
-                                <div> Time: {{ticket.time}} </div>
+                            <div class="queue-item col-md-6" ng-repeat="ticket in queueData"> 
+                                <div class="col-md-4"> Table #: {{ticket.id}} </div>
+                                <div class="col-md-4"> Time: {{ticket.time}} </div>
+                                <div class="col-md-4"> Status: {{ticket.status}} </div>
                             </div>
                             
                         </div>
