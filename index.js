@@ -76,7 +76,7 @@ var doubleClickWaiting = false;
 app.get('/double-click/:tableID', function (req, res) {
   io.emit('double-click', req.params.tableID);
   var interval = setInterval(function(){
-    if(!oneClickWaiting){
+    if(!doubleClickWaiting){
       clearInterval(interval);
       doubleClickWaiting = true;
       queue.addTable(req.params.tableID, "check");
@@ -89,11 +89,20 @@ app.get('/double-click/:tableID', function (req, res) {
   res.send('success');
 });
 
-
+var holdWaiting = false;
 app.get('/hold/:tableID', function (req, res) {
   io.emit('hold', req.params.tableID);
-  queue.removeTable(req.params.tableID);
-  queue.save(handleError);
+  var interval = setInterval(function(){
+    if(!holdWaiting){
+      clearInterval(interval);
+      holdWaiting = true;
+      queue.removeTable(req.params.tableID);
+      queue.save(function(err){
+        holdWaiting = false;
+        handleError(err);
+      });
+    }
+  }, 10);
   res.send('success');
 });
 
