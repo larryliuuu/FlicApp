@@ -9,12 +9,12 @@ app.controller('testController', ['$scope', 'dataFactory', function($scope, data
     dataFactory.getQueue().then(function(res){
       //console.log(res.queue);
       $scope.queueData = res.queue;
-      
+
     });
   };
 
 
-}]); 
+}]);
 
 app.factory('dataFactory', function($http, $q){
   //setting up basic factory variables
@@ -25,19 +25,20 @@ app.factory('dataFactory', function($http, $q){
     var deferred = $q.defer();
     $http.get(queryUrl)
     .success(function(res){
+      var queue = res.queue
+      queue.forEach(function(element, index, array){
+        element['readableTime'] = jQuery.timeago(element.time);
+      });
       service.data = res.data;
       deferred.resolve(res);
     })
     .error(function(err, status){
       deferred.reject(err);
-      
+
     })
     return deferred.promise;
   };
 
-  return service; 
+  return service;
 
 });
-
-
-

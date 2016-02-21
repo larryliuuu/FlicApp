@@ -21,9 +21,16 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="stylesheets/main.css">
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.timeago.js"></script>
+
+    <!-- Custome -->
     <script src="js/client.js"></script>
 
-     <!-- Angular --> 
+     <!-- Angular -->
     <script src="js/angular.js"></script>
     <script src="js/app.js"></script>
 
@@ -84,14 +91,14 @@
                     <div class="intro-message">
                         <!-- Refresh Queue Button -->
                         <button ng-click="requestQueue()"> Get Queue</button>
-                        <!-- Display Queue --> 
+                        <!-- Display Queue -->
                         <div class="queue-container">
 
-                            <div ng-repeat="ticket in queueData"> 
+                            <div ng-repeat="ticket in queueData">
                                 <div> Table #: {{ticket.id}} </div>
-                                <div> Time: {{ticket.time}} </div>
+                                <div> Time: {{ticket.readableTime}} </div>
                             </div>
-                            
+
                         </div>
 
 
@@ -130,9 +137,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
