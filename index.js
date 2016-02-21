@@ -14,16 +14,19 @@ app.get('/', function(req, res){
 });
 app.get('/one-click', function (req, res) {
   io.emit('one-click', 'hi');
+  res.send('success');
 });
 
 
 app.get('/double-click', function (req, res) {
   io.emit('double-click', 'hi');
+  res.send('success');
 });
 
 
 app.get('/hold', function (req, res) {
   io.emit('hold', 'hi');
+  res.send('success');
 });
 
 
