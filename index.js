@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var mongoose = require('mongoose');
 
 
 app.set('port', (process.env.PORT || 5000));
@@ -35,3 +36,6 @@ io.on('connection', function(socket){
 http.listen(app.get('port'), function(){
   console.log('listening on *:5000');
 });
+
+
+mongoose.connect('mongodb://waiterqueue:waiterqueue@ds013738.mongolab.com:13738/heroku_txdrn6vx');
