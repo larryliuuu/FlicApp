@@ -1,5 +1,7 @@
 # [Service Queue](http://waiterqueue.me/) 
-First Place Hackillinois SalesForce (Best Implementation of Flic button)
+First Place Hackillinois SalesForce Prize
+(Best Implementation of Flic button)
+
 
 Web application for restaurant owners to ensure customers prompt and precise service. 
 Created by Jon Reynolds, Larry Liu, Suraj Sinha, and Vishrut Dixit.
