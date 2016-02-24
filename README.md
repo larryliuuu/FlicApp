@@ -1,9 +1,10 @@
-# [Service Queue - First Place Hackillinois SalesForce (Best Implementation of Flic button)](http://waiterqueue.me/) 
+# [Service Queue](http://waiterqueue.me/) 
+First Place Hackillinois SalesForce (Best Implementation of Flic button
 Web application for restaurant owners to ensure customers prompt and precise service. 
 Created by Jon Reynolds, Larry Liu, Suraj Sinha, and Vishrut Dixit.
 
 ## Getting Started
-To use this web app, visit our webpage at http://waiterqueue.me/.
+To use this web app, visit our webpage at https://waiterqueue.herokuapp.com.
 
 ## Requirements
 You will need to have access to one Flic device per restaurant table and a mobile device
